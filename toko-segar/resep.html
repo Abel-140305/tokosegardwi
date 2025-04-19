@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Katalog Resep Masakan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Toko Segar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Produk</a></li>
+          <li class="nav-item"><a class="nav-link" href="manajemen.html">Manajemen Produk</a></li>
+          <li class="nav-item"><a class="nav-link active" href="resep.html">Resep</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Konten -->
+  <div class="container mt-5 pt-4">
+    <h2 class="text-center mb-4">Katalog Resep Masakan</h2>
+    <div id="daftarResep" class="row row-cols-1 row-cols-md-3 g-4"></div>
+  </div>
+
+  <script>
+    const resepList = [
+      {
+        nama: "Nasi Goreng Spesial",
+        gambar: "resep/nasi goreng.jpg",
+        bahan: "• 1 buah paha ayam atas bawah rebus, suwir ayamnya\n• 2 buah telur, kocok lepas\n• 150 g udang tanpa kulit\n• 5 buah bakso ikan, potong-potong\n• 500 g nasi putih\n• 1 sdr garam\n• 1/2 sdt gula pasir\n• 1 buah daun bawang, iris tipis\n• 1 1/2 sdm bawang goreng untuk taburan\n• 3 sdm minyak goreng untuk menumis\n",
+        langkah: " Panaskan minyak. Tumis bumbu tumbuk kasar sampai harum. Sisihkan di pinggir wajan. Masukkan telur. Aduk Sampai berbutir.\n Tambahkan ayam, udang, bakso. Aduk rata. Tambahkan nasi putih. Aduk-aduk. Masukkan kecap, garam, dan gula pasir. Aduk sampai matang.\n Masukkan daun bawang. Aduk rata. Sajikan bersama telur ceplok dan taburan bawang merah goreng."
+      },
+      {
+        nama: "Pecel Sayur",
+        gambar: "resep/pecel.jpg",
+        bahan: "• Kenikir 1 genggam\n• Kacang panjang 2 lonjor\n• Tauge/kecambah 30 gr blanching\n• Kol/sawi putih 2 lembar\n• Kemangi \n• Timun secukupunya\n  • Kacang tanah 50 gr goreng\n • Cabai merah 2 buah tumis\n• Cabai rawit merah\n • Bawang putih 1 buah iris tipis, tumis 10 kencur 1 ruas\n• Daun jeruk 3 lembar\n • Gula merah 1-3 sdm\n• Asam 1\n",
+        langkah: " Goreng/sangrai bahan bumbu saus kacang secara bergantian, mulai dari kacang tanah, bawang putih, kencur, dan cabe.\n Haluskan kacang tanah goreng, sishkan, haluskan daun jeruk, cabe, kencur, bawang merah, dan bawang putih yang telah digoreng, campur kacang tanah halus dan bumbu halus lainnya, tambahkan gula, garam, dan asam, cairkan bumbu pecel dengan air panas sampai larut dan kental.\n Rebus sayuran secara berturut-turut mulai dari tauge, kol, kacang panjang, dan daun kenikir, susun sayuran yang telah disediakan, siram dengan saus kacang dan sajikan bersama kerupuk."
+      },
+      {
+        nama: "Pempek",
+        gambar: "resep/pempek.jpg",
+        bahan: "• 250 gr tepung terigu\n• 400 gr tapioka/sagu\n• 500 ml air putih\n• 1 bungkus penyedap rasa ayam\n• 2 sdm garam\n• 4 sdm minyak goreng\n• 2 butir telur \n• 2 butir telur buat isian kapal selam kecil\n",
+        langkah: " Masak air, penyedap dan garam sampai mendidih.\n Siram kedalam terigu saat masih panas kemudian diaduk rata, lanjut masukkan telur satu persatu sambil tetap diaduk menggunakan spatula kayu, setelah merata masukkan minyak goreng, ratakan kembali.\n Adonan basah sudah jadi, lanjut masukkan tapioka/sagu, uleni pakai tangan sampai kalis, pempek siap di bentuk, saya bentuk lenjer dan kapal selam kecil masing-masing 20 butir, sehingga 1 resep ini menghasilkan 40pcs pempek.\n Isian pempek kapal selam mini: 3 butir telur + garam secukupnya + 250ml air putih + 2sdm terigu, aduk rata kalau perlu saring agar tepung tidak bergerindil.\n Tips membuat pempek kapal selam: bentuk seperti sumur dahulu, jangan terlalu melebar, tapi bikin sumur yang agak dalam, baru masukkan isian telurnya, kalau melebar nanti bentuknya malah seperti pastel dan adonan isian telur akan meleber-leber keluar dari adonan"
+      }
+      
+    ];
+
+    const daftarResep = document.getElementById('daftarResep');
+
+    
+    function renderResep() {
+  daftarResep.innerHTML = '';
+  resepList.forEach(resep => {
+    const col = document.createElement('div');
+    col.className = 'col';
+
+    const langkahList = resep.langkah.split('\n').filter(l => l.trim() !== '');
+    const langkahFormatted = '<ol>' + langkahList.map(l => `<li>${l.trim()}</li>`).join('') + '</ol>';
+
+    col.innerHTML = `
+      <div class="card h-100 shadow-sm">
+        <img src="${resep.gambar}" class="card-img-top" alt="Foto ${resep.nama}">
+        <div class="card-body">
+          <h5 class="card-title">${resep.nama}</h5>
+          <p><strong>Bahan:</strong><br>${resep.bahan.replace(/\n/g, '<br>')}</p>
+          <p><strong>Langkah:</strong>${langkahFormatted}</p>
+        </div>
+      </div>
+    `;
+    daftarResep.appendChild(col);
+  });
+}
+
+
+    renderResep();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
